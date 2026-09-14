@@ -192,6 +192,22 @@ export default function CategoryPageView({ category, locale }: CategoryPageViewP
               >
                 Bolívia (Uyuni)
               </button>
+              <button
+                onClick={() => setSelectedDestination('Argentina')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  selectedDestination === 'Argentina' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
+                }`}
+              >
+                Argentina
+              </button>
+              <button
+                onClick={() => setSelectedDestination('Colômbia')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  selectedDestination === 'Colômbia' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
+                }`}
+              >
+                Colômbia
+              </button>
             </div>
 
             {/* Busca */}
