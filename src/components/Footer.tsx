@@ -12,7 +12,7 @@ export default function Footer({ locale }: FooterProps) {
   const t = getTranslation(locale);
 
   return (
-    <footer className="bg-[#182525] text-white pt-16 pb-12 border-t border-white/10">
+    <footer className="bg-[#A36642] text-white pt-16 pb-12 border-t border-white/10">
       <div className="container-pad">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Col 1: Brand */}

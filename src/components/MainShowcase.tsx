@@ -10,7 +10,7 @@ import DestinationsSection from '@/components/DestinationsSection';
 import ProductCard from '@/components/ProductCard';
 import ProductDetailModal from '@/components/ProductDetailModal';
 import TripBuilderModal from '@/components/TripBuilderModal';
-import HowItWorks from '@/components/HowItWorks';
+import Testimonials from '@/components/Testimonials';
 import AboutSection from '@/components/AboutSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -249,8 +249,8 @@ function MainShowcaseInner({ initialLocale = 'pt', showGatewayInitially = false 
         </div>
       </section>
 
-      {/* Seção Como Funciona */}
-      <HowItWorks locale={locale} />
+      {/* Seção Depoimentos de Clientes */}
+      <Testimonials locale={locale} />
 
       {/* Seção Sobre Nós & Credenciais */}
       <AboutSection locale={locale} />
