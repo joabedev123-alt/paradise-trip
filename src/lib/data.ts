@@ -943,20 +943,20 @@ export const sampleProducts: Product[] = [
 
 export const destinations = [
   {
-    id: 'chile',
-    name: 'Chile',
-    slug: 'chile',
-    image: '/images/valle-de-la-luna.jpg',
-    description: 'Do deserto ao fim do mundo.',
-    productCount: sampleProducts.filter((p) => p.country === 'Chile').length,
-  },
-  {
     id: 'peru',
     name: 'Peru',
     slug: 'peru',
     image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&q=80',
     description: 'Civilizações, mistérios e natureza.',
     productCount: sampleProducts.filter((p) => p.country === 'Peru').length,
+  },
+  {
+    id: 'chile',
+    name: 'Chile',
+    slug: 'chile',
+    image: '/images/valle-de-la-luna.jpg',
+    description: 'Do deserto ao fim do mundo.',
+    productCount: sampleProducts.filter((p) => p.country === 'Chile').length,
   },
   {
     id: 'bolivia',
