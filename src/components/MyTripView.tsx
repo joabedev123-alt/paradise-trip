@@ -142,7 +142,7 @@ export default function MyTripView({ locale }: MyTripViewProps) {
 
               {/* Right Column: Resumo & WhatsApp */}
               <div className="lg:col-span-4">
-                <div className="bg-white p-6 rounded-3xl border border-[#EEEAE4] shadow-sm space-y-6 sticky top-28">
+                <div className="bg-white p-6 rounded-3xl border border-[#EEEAE4] shadow-sm space-y-6 lg:sticky lg:top-28">
                   <h4 className="text-base font-bold text-[#182525] border-b border-[#EEEAE4] pb-3" style={{ fontFamily: 'var(--font-outfit)' }}>
                     Resumo da Viagem
                   </h4>

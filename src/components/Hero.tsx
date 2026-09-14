@@ -26,7 +26,7 @@ export default function Hero({ locale, onSearch, selectedCategory, selectedDesti
   };
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-32 pb-16 overflow-hidden">
+    <section className="relative min-h-[92vh] min-h-[92dvh] flex items-center justify-center pt-28 sm:pt-32 pb-16 overflow-hidden">
       {/* Background Image & Overlays */}
       <div className="absolute inset-0 z-0">
         <img

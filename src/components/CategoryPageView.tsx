@@ -105,7 +105,7 @@ export default function CategoryPageView({ category, locale }: CategoryPageViewP
       <Navbar locale={locale} />
 
       {/* Hero da Categoria */}
-      <section className="relative min-h-[55vh] flex items-center justify-center pt-36 pb-16 overflow-hidden">
+      <section className="relative min-h-[55vh] min-h-[55dvh] flex items-center justify-center pt-32 sm:pt-36 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={cfg.heroImage}

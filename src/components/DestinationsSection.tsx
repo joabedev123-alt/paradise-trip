@@ -60,7 +60,7 @@ export default function DestinationsSection({ locale, onSelectCountry }: Destina
 
               {/* Informações na base */}
               <div className="absolute bottom-5 left-5 right-5 text-white">
-                <h3 className="text-2xl font-bold mb-1 group-hover:text-[#1FB8B5] transition-colors" style={{ fontFamily: 'var(--font-outfit)' }}>
+                <h3 className="text-2xl font-bold mb-1 text-white group-hover:text-[#1FB8B5] transition-colors" style={{ fontFamily: 'var(--font-outfit)' }}>
                   {dest.name}
                 </h3>
                 <p className="text-xs text-white/80 font-light mb-3">

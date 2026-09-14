@@ -61,7 +61,7 @@ export default function ProductDetailModal({ product, onClose, locale }: Product
 
         {/* Modal Window */}
         <motion.div
-          className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]"
+          className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh] max-h-[90dvh]"
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -169,6 +169,31 @@ export default function ProductDetailModal({ product, onClose, locale }: Product
               </p>
             </div>
 
+            {/* Day-by-day itinerary */}
+            {product.itinerary && product.itinerary.length > 0 && (
+              <div>
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                  <i className="bi bi-map text-[#1FB8B5]" />
+                  Roteiro
+                </h3>
+                <ol className="space-y-2.5">
+                  {product.itinerary.map((item) => (
+                    <li
+                      key={item.day}
+                      className="grid grid-cols-[4.5rem_1fr] gap-3 rounded-2xl border border-[#EEEAE4] bg-[#F8F7F3] p-3.5"
+                    >
+                      <span className="text-xs font-bold uppercase tracking-wide text-[#1FB8B5]">
+                        {item.day}
+                      </span>
+                      <span className="text-sm font-medium leading-relaxed text-[#182525]/85">
+                        {item.title}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
             {/* What's included & Not included */}
             <div className="grid sm:grid-cols-2 gap-4">
               {product.includes && product.includes.length > 0 && (
@@ -206,6 +231,15 @@ export default function ProductDetailModal({ product, onClose, locale }: Product
               )}
             </div>
 
+            {product.closingTitle && product.closingText && (
+              <div className="rounded-2xl border border-[#1FB8B5]/25 bg-[#1FB8B5]/10 p-5">
+                <h3 className="text-lg font-bold text-[#182525]">{product.closingTitle}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#182525]/75">
+                  {product.closingText}
+                </p>
+              </div>
+            )}
+
             {/* Tags */}
             {product.tags && product.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-2">
@@ -234,7 +268,7 @@ export default function ProductDetailModal({ product, onClose, locale }: Product
                 className="btn-whatsapp px-5 py-3 text-sm flex-1 sm:flex-initial flex items-center justify-center gap-2 font-medium cursor-pointer"
               >
                 <i className="bi bi-whatsapp text-lg" />
-                <span>Consultar</span>
+                <span>{product.ctaLabel || 'Consultar'}</span>
               </button>
 
               <button

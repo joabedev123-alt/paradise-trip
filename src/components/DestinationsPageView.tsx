@@ -56,6 +56,14 @@ export default function DestinationsPageView({ locale, activeCountry }: Destinat
       currency: 'Peso Argentino (ARS)',
       climate: 'Frio temperado / subpolar',
     },
+    'Colômbia': {
+      title: 'Caribe & Cidades Vibrantes — Colômbia',
+      subtitle: 'Do centro histórico colonial de Cartagena às águas cristalinas do Caribe e à efervescência cultural de Bogotá e Medellín.',
+      bestTime: 'Dezembro a Março (estação seca)',
+      highlight: 'Cartagena, San Andrés, Bogotá e Medellín',
+      currency: 'Peso Colombiano (COP)',
+      climate: 'Tropical no litoral, temperado nas cidades andinas',
+    },
   };
 
   const currentInfo = countryInfo[selectedCountry] || countryInfo.Chile;
@@ -66,7 +74,7 @@ export default function DestinationsPageView({ locale, activeCountry }: Destinat
       <Navbar locale={locale} />
 
       {/* Hero de Destinos */}
-      <section className="relative min-h-[50vh] flex items-center justify-center pt-36 pb-16 overflow-hidden">
+      <section className="relative min-h-[50vh] min-h-[50dvh] flex items-center justify-center pt-32 sm:pt-36 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/hero-principal.jpg"

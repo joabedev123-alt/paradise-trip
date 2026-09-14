@@ -10,6 +10,7 @@ export default async function Page({ params }: PageProps) {
   const countryName = c === 'chile' ? 'Chile' :
                       c === 'peru' ? 'Peru' :
                       c === 'bolivia' ? 'Bolívia' :
-                      c === 'argentina' ? 'Argentina' : 'Chile';
+                      c === 'argentina' ? 'Argentina' :
+                      c === 'colombia' ? 'Colômbia' : 'Chile';
   return <DestinationsPageView locale="pt" activeCountry={countryName} />;
 }
