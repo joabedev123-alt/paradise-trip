@@ -16,11 +16,11 @@ export default function AboutSection({ locale }: AboutSectionProps) {
       <div className="container-pad">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Images collage */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+          <div className="lg:col-span-6 relative mx-auto max-w-sm lg:max-w-none lg:mx-0">
+            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] max-h-[560px]">
               <img
-                src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1200&q=80"
-                alt="Machu Picchu Peru"
+                src="/images/sobre-paradise-trip.jpg"
+                alt="Equipe Paradise Trip Viagens no Peru"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -50,9 +50,11 @@ export default function AboutSection({ locale }: AboutSectionProps) {
               <span className="text-[#1FB8B5]">Nós fazemos acontecer.</span>
             </h2>
 
-            <p className="text-[#182525]/80 text-base sm:text-lg font-light leading-relaxed">
-              {t.aboutText}
-            </p>
+            <div className="text-[#182525]/80 text-base sm:text-lg font-light leading-relaxed space-y-3">
+              {t.aboutText.split('\n').map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
 
             {/* Checklist */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">

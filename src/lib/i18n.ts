@@ -69,7 +69,7 @@ export const translations = {
     // About
     aboutTag: 'Viaje com a Paradise',
     aboutTitle: 'Você escolhe o que quer viver.\nNós ajudamos a fazer acontecer.',
-    aboutText: 'A Paradise Trip Viagens é especializada em experiências pela América do Sul, reunindo passeios, transfers, pacotes e roteiros para facilitar cada etapa da sua viagem.',
+    aboutText: 'Desde 2019, a Paradise Trip Viagens transforma planos de viagem em experiências bem cuidadas, unindo conhecimento, segurança e atendimento próximo.\nAo longo dessa trajetória, crescemos, ampliamos nossos destinos e construímos uma rede de parceiros para oferecer viagens pelo Peru e por diferentes destinos da América do Sul, sempre com suporte em português e atenção a cada detalhe.\nMais do que vender viagens, queremos proporcionar tranquilidade para viajar e experiências para guardar na memória.',
     aboutCta: 'Conheça a Paradise',
 
     // Instagram
@@ -166,7 +166,7 @@ export const translations = {
     testimonialsSubtitle: 'Lo que dicen los viajeros que ya exploraron Sudamérica con Paradise Trip.',
     aboutTag: 'Viaja con Paradise',
     aboutTitle: 'Tú eliges lo que quieres vivir.\nNosotros lo hacemos posible.',
-    aboutText: 'Paradise Trip Viagens es especialista en experiencias por América del Sur, reuniendo paseos, transfers, paquetes e itinerarios para facilitar cada etapa de tu viaje.',
+    aboutText: 'Desde 2019, Paradise Trip Viagens transforma planes de viaje en experiencias bien cuidadas, uniendo conocimiento, seguridad y atención cercana.\nA lo largo de esta trayectoria, crecimos, ampliamos nuestros destinos y construimos una red de socios para ofrecer viajes por Perú y por diferentes destinos de Sudamérica, siempre con soporte en portugués y atención a cada detalle.\nMás que vender viajes, queremos brindar tranquilidad para viajar y experiencias para guardar en la memoria.',
     aboutCta: 'Conoce Paradise',
     instagramTitle: 'Inspira tu próximo viaje',
     categories: 'Categorías',
@@ -253,7 +253,7 @@ export const translations = {
     testimonialsSubtitle: 'What travelers who have already explored South America with Paradise Trip have to say.',
     aboutTag: 'Travel with Paradise',
     aboutTitle: 'You choose what you want to live.\nWe make it happen.',
-    aboutText: 'Paradise Trip Viagens specializes in experiences across South America, bringing together tours, transfers, packages and itineraries to make every step of your trip easier.',
+    aboutText: 'Since 2019, Paradise Trip Viagens has been turning travel plans into carefully crafted experiences, combining expertise, safety and close, personal support.\nThroughout this journey, we\'ve grown, expanded our destinations and built a network of partners to offer trips across Peru and other South American destinations, always with Portuguese-language support and attention to every detail.\nMore than selling trips, we want to provide peace of mind for traveling and experiences worth remembering.',
     aboutCta: 'Meet Paradise',
     instagramTitle: 'Inspire your next trip',
     categories: 'Categories',
