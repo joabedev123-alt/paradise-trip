@@ -113,7 +113,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
                         <button
                           type="button"
                           onClick={() => setAdultsCount(Math.max(1, adultsCount - 1))}
-                          className="w-7 h-7 rounded-lg bg-[#EEEAE4] text-xs font-bold hover:bg-[#1FB8B5] hover:text-white transition-colors"
+                          className="w-9 h-9 rounded-lg bg-[#EEEAE4] text-sm font-bold hover:bg-[#1FB8B5] hover:text-white active:scale-95 transition-all"
                         >
                           -
                         </button>
@@ -121,7 +121,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
                         <button
                           type="button"
                           onClick={() => setAdultsCount(adultsCount + 1)}
-                          className="w-7 h-7 rounded-lg bg-[#EEEAE4] text-xs font-bold hover:bg-[#1FB8B5] hover:text-white transition-colors"
+                          className="w-9 h-9 rounded-lg bg-[#EEEAE4] text-sm font-bold hover:bg-[#1FB8B5] hover:text-white active:scale-95 transition-all"
                         >
                           +
                         </button>
@@ -137,7 +137,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
                         <button
                           type="button"
                           onClick={() => setChildrenCount(Math.max(0, childrenCount - 1))}
-                          className="w-7 h-7 rounded-lg bg-[#EEEAE4] text-xs font-bold hover:bg-[#1FB8B5] hover:text-white transition-colors"
+                          className="w-9 h-9 rounded-lg bg-[#EEEAE4] text-sm font-bold hover:bg-[#1FB8B5] hover:text-white active:scale-95 transition-all"
                         >
                           -
                         </button>
@@ -145,7 +145,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
                         <button
                           type="button"
                           onClick={() => setChildrenCount(childrenCount + 1)}
-                          className="w-7 h-7 rounded-lg bg-[#EEEAE4] text-xs font-bold hover:bg-[#1FB8B5] hover:text-white transition-colors"
+                          className="w-9 h-9 rounded-lg bg-[#EEEAE4] text-sm font-bold hover:bg-[#1FB8B5] hover:text-white active:scale-95 transition-all"
                         >
                           +
                         </button>
@@ -184,7 +184,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
                         {/* Remove button */}
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="absolute top-3 right-3 text-slate-400 hover:text-rose-500 transition-colors p-1"
+                          className="absolute top-2 right-2 text-slate-400 hover:text-rose-500 transition-colors p-2 -m-1"
                           title={t.remove}
                           aria-label={t.remove}
                         >

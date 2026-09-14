@@ -129,7 +129,7 @@ export default function MyTripView({ locale }: MyTripViewProps) {
                         {/* Botão de excluir */}
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="absolute top-4 right-4 text-slate-400 hover:text-rose-500 transition-colors p-1"
+                          className="absolute top-3 right-3 text-slate-400 hover:text-rose-500 transition-colors p-2 -m-1"
                           title={t.remove}
                         >
                           <i className="bi bi-trash3 text-base" />
@@ -158,14 +158,14 @@ export default function MyTripView({ locale }: MyTripViewProps) {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setAdults(Math.max(1, adults - 1))}
-                            className="w-7 h-7 rounded-lg bg-white border border-[#EEEAE4] text-xs font-bold"
+                            className="w-9 h-9 rounded-lg bg-white border border-[#EEEAE4] text-sm font-bold active:scale-95 transition-transform"
                           >
                             -
                           </button>
                           <span className="text-sm font-bold w-4 text-center">{adults}</span>
                           <button
                             onClick={() => setAdults(adults + 1)}
-                            className="w-7 h-7 rounded-lg bg-white border border-[#EEEAE4] text-xs font-bold"
+                            className="w-9 h-9 rounded-lg bg-white border border-[#EEEAE4] text-sm font-bold active:scale-95 transition-transform"
                           >
                             +
                           </button>
@@ -177,14 +177,14 @@ export default function MyTripView({ locale }: MyTripViewProps) {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setChildren(Math.max(0, children - 1))}
-                            className="w-7 h-7 rounded-lg bg-white border border-[#EEEAE4] text-xs font-bold"
+                            className="w-9 h-9 rounded-lg bg-white border border-[#EEEAE4] text-sm font-bold active:scale-95 transition-transform"
                           >
                             -
                           </button>
                           <span className="text-sm font-bold w-4 text-center">{children}</span>
                           <button
                             onClick={() => setChildren(children + 1)}
-                            className="w-7 h-7 rounded-lg bg-white border border-[#EEEAE4] text-xs font-bold"
+                            className="w-9 h-9 rounded-lg bg-white border border-[#EEEAE4] text-sm font-bold active:scale-95 transition-transform"
                           >
                             +
                           </button>
