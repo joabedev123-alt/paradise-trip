@@ -169,28 +169,28 @@ export default function CategoryPageView({ category, locale }: CategoryPageViewP
                 Todos os Destinos
               </button>
               <button
-                onClick={() => setSelectedDestination('San Pedro de Atacama')}
+                onClick={() => setSelectedDestination('Chile')}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  selectedDestination === 'San Pedro de Atacama' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
+                  selectedDestination === 'Chile' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
                 }`}
               >
-                Chile (Atacama)
+                Chile
               </button>
               <button
-                onClick={() => setSelectedDestination('Cusco')}
+                onClick={() => setSelectedDestination('Peru')}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  selectedDestination === 'Cusco' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
+                  selectedDestination === 'Peru' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
                 }`}
               >
-                Peru (Cusco)
+                Peru
               </button>
               <button
-                onClick={() => setSelectedDestination('Uyuni')}
+                onClick={() => setSelectedDestination('Bolívia')}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  selectedDestination === 'Uyuni' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
+                  selectedDestination === 'Bolívia' ? 'bg-[#1FB8B5] text-white shadow-md' : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525]'
                 }`}
               >
-                Bolívia (Uyuni)
+                Bolívia
               </button>
               <button
                 onClick={() => setSelectedDestination('Argentina')}
