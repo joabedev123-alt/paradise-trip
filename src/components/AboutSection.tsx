@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Locale, getTranslation } from '@/lib/i18n';
 import { buildSimpleWhatsAppUrl } from '@/lib/whatsapp';
 
@@ -18,10 +18,12 @@ export default function AboutSection({ locale }: AboutSectionProps) {
           {/* Left Images collage */}
           <div className="lg:col-span-6 relative mx-auto max-w-sm lg:max-w-none lg:mx-0">
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] max-h-[560px]">
-              <img
+              <Image
                 src="/images/sobre-paradise-trip.jpg"
                 alt="Equipe Paradise Trip Viagens no Peru"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 384px, 40vw"
+                className="object-cover"
               />
             </div>
             {/* Small floating badge */}

@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Locale, locales } from '@/lib/i18n';
+import { Locale } from '@/lib/i18n';
 
 const LOCALE_STORAGE_KEY = 'paradise-locale';
 
@@ -43,10 +44,13 @@ export default function LanguageGateway() {
         >
           {/* Background */}
           <div className="absolute inset-0">
-            <img
+            <Image
               src="/images/hero-principal.jpg"
               alt="Atacama Desert"
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#182525]/60 via-[#182525]/50 to-[#182525]/80" />
             <div className="absolute inset-0 bg-[#107C79]/10" />

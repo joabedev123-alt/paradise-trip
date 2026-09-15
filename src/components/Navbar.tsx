@@ -35,6 +35,7 @@ export default function Navbar({ locale }: NavbarProps) {
   };
 
   const navLinks = [
+    { label: 'Home', href: `/${locale}` },
     { label: t.destinations, href: `/${locale}/destinos` },
     { label: t.tours, href: `/${locale}/passeios` },
     { label: t.packages, href: `/${locale}/pacotes` },

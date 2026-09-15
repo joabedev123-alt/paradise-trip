@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { sampleProducts, Product, destinations } from '@/lib/data';
 import { Locale, getTranslation } from '@/lib/i18n';
 import Navbar from '@/components/Navbar';
@@ -17,11 +18,56 @@ interface DestinationsPageViewProps {
   activeCountry?: string;
 }
 
-export default function DestinationsPageView({ locale, activeCountry }: DestinationsPageViewProps) {
+function DestinationsPageViewInner({ locale, activeCountry }: DestinationsPageViewProps) {
+  const searchParams = useSearchParams();
   const t = getTranslation(locale);
   const [selectedCountry, setSelectedCountry] = useState<string>(activeCountry || 'Chile');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isTripModalOpen, setIsTripModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Sincroniza com o parametro ?categoria=... vindo da busca do Hero (sistema externo: URL)
+  useEffect(() => {
+    const cat = searchParams.get('categoria');
+    if (cat && ['tours', 'packages', 'transfers', 'experiences', 'all'].includes(cat)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- sincroniza com a URL (sistema externo) e dispara scroll no DOM
+      setSelectedCategory(cat);
+      setTimeout(() => {
+        const el = document.getElementById('catalogo');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  }, [searchParams]);
+
+  const categories = [
+    { id: 'all', label: t.filterAll, icon: 'bi-grid-fill' },
+    { id: 'tours', label: t.filterTours, icon: 'bi-compass' },
+    { id: 'packages', label: t.filterPackages, icon: 'bi-box2-heart' },
+    { id: 'transfers', label: t.filterTransfers, icon: 'bi-car-front' },
+    { id: 'experiences', label: t.filterExperiences, icon: 'bi-stars' },
+  ];
+
+  const filteredProducts = useMemo(() => {
+    return sampleProducts.filter((p) => {
+      if (selectedCategory !== 'all' && p.category !== selectedCategory) {
+        return false;
+      }
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const matchesName = p.name.toLowerCase().includes(q) ||
+                            (p.nameEs && p.nameEs.toLowerCase().includes(q)) ||
+                            (p.nameEn && p.nameEn.toLowerCase().includes(q));
+        const matchesDesc = p.description.toLowerCase().includes(q);
+        const matchesDest = p.destination.toLowerCase().includes(q);
+        const matchesTag = p.tags?.some((tag) => tag.toLowerCase().includes(q));
+        if (!matchesName && !matchesDesc && !matchesDest && !matchesTag) return false;
+      }
+      return true;
+    });
+  }, [selectedCategory, searchQuery]);
 
   const countryInfo: Record<string, { title: string; subtitle: string; bestTime: string; highlight: string; currency: string; climate: string }> = {
     Chile: {
@@ -76,10 +122,13 @@ export default function DestinationsPageView({ locale, activeCountry }: Destinat
       {/* Hero de Destinos */}
       <section className="relative min-h-[50vh] min-h-[50dvh] flex items-center justify-center pt-32 sm:pt-36 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/hero-principal.jpg"
             alt="Destinos América do Sul"
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#182525]/85 via-[#182525]/65 to-[#F8F7F3]" />
         </div>
@@ -197,6 +246,103 @@ export default function DestinationsPageView({ locale, activeCountry }: Destinat
         </div>
       </section>
 
+      {/* Catálogo Completo de Roteiros */}
+      <section id="catalogo" className="py-16 bg-white border-t border-[#EEEAE4] scroll-mt-20">
+        <div className="container-pad">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1FB8B5]/10 text-[#107C79] text-xs font-semibold uppercase tracking-wider mb-2">
+                <i className="bi bi-sparkles" />
+                Catálogo de Roteiros
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#182525]">
+                {selectedCategory === 'tours' ? 'Passeios Imperdíveis' :
+                 selectedCategory === 'packages' ? 'Pacotes Completos' :
+                 selectedCategory === 'transfers' ? 'Transfers Executivos e Privativos' :
+                 selectedCategory === 'experiences' ? 'Experiências Únicas' :
+                 t.productsTitle}
+              </h2>
+              <p className="text-[#182525]/70 text-sm sm:text-base font-light mt-1">
+                {t.productsSubtitle}
+              </p>
+            </div>
+
+            {/* Busca Rápida por Texto */}
+            <div className="relative w-full md:w-72">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Buscar por nome ou atrativo..."
+                className="w-full bg-white border border-[#EEEAE4] rounded-2xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#1FB8B5] transition-colors"
+              />
+              <i className="bi bi-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#182525]"
+                >
+                  <i className="bi bi-x-circle-fill text-xs" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Abas de Categorias */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-hide">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  selectedCategory === cat.id
+                    ? 'bg-[#1FB8B5] text-white shadow-lg shadow-[#1FB8B5]/30'
+                    : 'bg-white border border-[#EEEAE4] text-[#182525]/70 hover:text-[#182525] hover:border-[#1FB8B5]/40'
+                }`}
+              >
+                <i className={`bi ${cat.icon}`} />
+                <span>{cat.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Grid de Experiências */}
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  locale={locale}
+                  onOpenDetail={(prod) => setSelectedProduct(prod)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-[#F8F7F3] rounded-3xl border border-[#EEEAE4] p-8">
+              <div className="w-16 h-16 rounded-full bg-[#1FB8B5]/10 text-[#1FB8B5] flex items-center justify-center text-3xl mx-auto mb-4">
+                <i className="bi bi-search" />
+              </div>
+              <h3 className="text-xl font-bold text-[#182525] mb-2">
+                Nenhum roteiro encontrado para esses filtros
+              </h3>
+              <p className="text-sm text-[#182525]/60 mb-6 font-light">
+                Tente selecionar outra categoria ou limpar sua busca.
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setSearchQuery('');
+                }}
+                className="btn-primary px-6 py-2.5 text-sm cursor-pointer"
+              >
+                Limpar todos os filtros
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
       <Footer locale={locale} />
       <FloatingWhatsApp />
 
@@ -212,5 +358,13 @@ export default function DestinationsPageView({ locale, activeCountry }: Destinat
         onClose={() => setIsTripModalOpen(false)}
       />
     </div>
+  );
+}
+
+export default function DestinationsPageView(props: DestinationsPageViewProps) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F8F7F3] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-[#1FB8B5] border-t-transparent animate-spin" /></div>}>
+      <DestinationsPageViewInner {...props} />
+    </Suspense>
   );
 }

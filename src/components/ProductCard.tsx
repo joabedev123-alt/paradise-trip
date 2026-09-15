@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Product } from '@/lib/data';
 import { Locale, getTranslation } from '@/lib/i18n';
 import { useTripStore } from '@/lib/store';
@@ -38,11 +39,12 @@ export default function ProductCard({ product, locale, onOpenDetail }: ProductCa
     >
       {/* Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[#182525]/5 cursor-pointer" onClick={() => onOpenDetail(product)}>
-        <img
+        <Image
           src={product.image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="img-overlay" />
 

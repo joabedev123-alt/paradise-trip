@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 import { sampleProducts, Product } from '@/lib/data';
-import { Locale, getTranslation } from '@/lib/i18n';
+import { Locale } from '@/lib/i18n';
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
 import ProductDetailModal from '@/components/ProductDetailModal';
@@ -76,7 +77,6 @@ const categoryConfig = {
 };
 
 export default function CategoryPageView({ category, locale }: CategoryPageViewProps) {
-  const t = getTranslation(locale);
   const cfg = categoryConfig[category];
   const [selectedDestination, setSelectedDestination] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -107,10 +107,13 @@ export default function CategoryPageView({ category, locale }: CategoryPageViewP
       {/* Hero da Categoria */}
       <section className="relative min-h-[55vh] min-h-[55dvh] flex items-center justify-center pt-32 sm:pt-36 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src={cfg.heroImage}
             alt={cfg.title}
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#182525]/85 via-[#182525]/60 to-[#F8F7F3]" />
         </div>

@@ -14,7 +14,7 @@ interface TripBuilderModalProps {
 
 export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilderModalProps) {
   const t = getTranslation(locale);
-  const { items, removeItem, clearTrip, updateItem } = useTripStore();
+  const { items, removeItem, clearTrip } = useTripStore();
   const [adultsCount, setAdultsCount] = useState(2);
   const [childrenCount, setChildrenCount] = useState(0);
 
@@ -156,7 +156,7 @@ export default function TripBuilderModal({ isOpen, onClose, locale }: TripBuilde
 
                 {/* Items */}
                 <div className="space-y-3">
-                  {items.map((item, idx) => {
+                  {items.map((item) => {
                     const itemName = locale === 'es' ? (item.nameEs || item.name) : locale === 'en' ? (item.nameEn || item.name) : item.name;
                     return (
                       <div

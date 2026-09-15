@@ -1,16 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { destinations } from '@/lib/data';
 import { Locale, getTranslation } from '@/lib/i18n';
 
 interface DestinationsSectionProps {
   locale: Locale;
-  onSelectCountry: (countryName: string) => void;
 }
 
-export default function DestinationsSection({ locale, onSelectCountry }: DestinationsSectionProps) {
+export default function DestinationsSection({ locale }: DestinationsSectionProps) {
   const t = getTranslation(locale);
+  const router = useRouter();
 
   return (
     <section id="destinos" className="py-20 bg-white">
@@ -38,16 +40,15 @@ export default function DestinationsSection({ locale, onSelectCountry }: Destina
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              onClick={() => {
-                onSelectCountry(dest.name);
-                document.getElementById('experiencias')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => router.push(`/${locale}/destinos/${dest.slug}`)}
               className="group relative h-80 rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300"
             >
-              <img
+              <Image
                 src={dest.image}
                 alt={dest.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#182525]/90 via-[#182525]/30 to-transparent" />
 

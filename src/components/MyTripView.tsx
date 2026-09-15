@@ -83,7 +83,7 @@ export default function MyTripView({ locale }: MyTripViewProps) {
                 </div>
 
                 <div className="space-y-4">
-                  {items.map((item, idx) => {
+                  {items.map((item) => {
                     const itemName = locale === 'es' ? (item.nameEs || item.name) : locale === 'en' ? (item.nameEn || item.name) : item.name;
                     return (
                       <div

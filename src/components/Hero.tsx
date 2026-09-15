@@ -1,38 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Locale, getTranslation } from '@/lib/i18n';
 import { useState } from 'react';
 
 interface HeroProps {
   locale: Locale;
-  onSearch: (filters: { destination: string; category: string }) => void;
-  selectedCategory: string;
-  selectedDestination: string;
 }
 
-export default function Hero({ locale, onSearch, selectedCategory, selectedDestination }: HeroProps) {
+const destinationCountrySlug: Record<string, string> = {
+  'San Pedro de Atacama': 'chile',
+  'Cusco': 'peru',
+  'Uyuni': 'bolivia',
+};
+
+export default function Hero({ locale }: HeroProps) {
   const t = getTranslation(locale);
-  const [dest, setDest] = useState(selectedDestination);
-  const [cat, setCat] = useState(selectedCategory);
+  const router = useRouter();
+  const [dest, setDest] = useState('');
+  const [cat, setCat] = useState('all');
+
+  const goToDestinos = (destination: string, category: string) => {
+    const countrySlug = destinationCountrySlug[destination];
+    const path = countrySlug ? `/${locale}/destinos/${countrySlug}` : `/${locale}/destinos`;
+    const query = category && category !== 'all' ? `?categoria=${category}` : '';
+    router.push(`${path}${query}`);
+  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch({ destination: dest, category: cat });
-    const target = document.getElementById('experiencias');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    goToDestinos(dest, cat);
   };
 
   return (
     <section className="relative min-h-[92vh] min-h-[92dvh] flex items-center justify-center pt-28 sm:pt-32 pb-16 overflow-hidden">
       {/* Background Image & Overlays */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/images/hero-principal.jpg"
           alt="Paisagens da América do Sul"
-          className="w-full h-full object-cover scale-105"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover scale-105"
         />
         {/* Gradients */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#182525]/80 via-[#182525]/50 to-[#F8F7F3]" />
@@ -148,31 +160,19 @@ export default function Hero({ locale, onSearch, selectedCategory, selectedDesti
           >
             <span>Destaques rápidos:</span>
             <button
-              onClick={() => {
-                setDest('San Pedro de Atacama');
-                onSearch({ destination: 'San Pedro de Atacama', category: 'all' });
-                document.getElementById('experiencias')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => goToDestinos('San Pedro de Atacama', 'all')}
               className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               🏔️ Deserto do Atacama
             </button>
             <button
-              onClick={() => {
-                setDest('Cusco');
-                onSearch({ destination: 'Cusco', category: 'all' });
-                document.getElementById('experiencias')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => goToDestinos('Cusco', 'all')}
               className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               🏛️ Machu Picchu
             </button>
             <button
-              onClick={() => {
-                setDest('Uyuni');
-                onSearch({ destination: 'Uyuni', category: 'all' });
-                document.getElementById('experiencias')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => goToDestinos('Uyuni', 'all')}
               className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               ✨ Salar de Uyuni

@@ -1,4 +1,4 @@
-import { TripItem, AvailabilityStatus } from '@/lib/store';
+import { TripItem } from '@/lib/store';
 
 export interface Product extends TripItem {
   description: string;

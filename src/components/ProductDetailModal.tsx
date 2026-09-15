@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Product } from '@/lib/data';
 import { Locale, getTranslation } from '@/lib/i18n';
 import { useTripStore } from '@/lib/store';
@@ -69,10 +70,12 @@ export default function ProductDetailModal({ product, onClose, locale }: Product
         >
           {/* Header Image & Gallery */}
           <div className="relative h-64 sm:h-80 w-full bg-[#182525] shrink-0">
-            <img
+            <Image
               src={currentImage}
               alt={title}
-              className="w-full h-full object-cover transition-all duration-300"
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover transition-all duration-300"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#182525]/80 via-transparent to-black/30" />
 
