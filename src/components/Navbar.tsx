@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Locale, locales, getTranslation } from '@/lib/i18n';
@@ -56,15 +57,18 @@ export default function Navbar({ locale }: NavbarProps) {
           <div className="flex items-center justify-between h-20 md:h-28">
             {/* Logo */}
             <Link href={`/${locale}`} className="flex items-center gap-3 shrink-0 group py-2">
-              <img
+              <Image
                 src="/logo002.png"
                 alt="Paradise Trip Viagens"
+                width={96}
+                height={96}
+                priority
                 className="h-16 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md"
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -84,7 +88,7 @@ export default function Navbar({ locale }: NavbarProps) {
             <div className="flex items-center gap-2">
               {/* Search */}
               <button
-                className={`hidden md:flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
+                className={`hidden lg:flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
                   scrolled ? 'text-[#182525]/70 hover:bg-[#EEEAE4]' : 'text-white/80 hover:bg-white/10'
                 }`}
                 aria-label={t.search}
@@ -93,7 +97,7 @@ export default function Navbar({ locale }: NavbarProps) {
               </button>
 
               {/* Language switcher */}
-              <div className="relative hidden md:block">
+              <div className="relative hidden lg:block">
                 <button
                   onClick={() => setLangOpen(!langOpen)}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold tracking-wider transition-colors ${
@@ -135,7 +139,7 @@ export default function Navbar({ locale }: NavbarProps) {
               {/* My Trip */}
               <Link
                 href={`/${locale}/minha-viagem`}
-                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl btn-primary text-sm"
+                className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl btn-primary text-sm"
               >
                 <i className="bi bi-suitcase2 text-base" />
                 <span>{t.myTrip}</span>
@@ -149,7 +153,7 @@ export default function Navbar({ locale }: NavbarProps) {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen(true)}
-                className={`md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
+                className={`lg:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
                   scrolled ? 'text-[#182525]' : 'text-white'
                 }`}
                 aria-label={t.menu}
@@ -166,14 +170,14 @@ export default function Navbar({ locale }: NavbarProps) {
         {mobileOpen && (
           <>
             <motion.div
-              className="fixed inset-0 bg-black/50 z-[60] md:hidden"
+              className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 bottom-0 w-[80vw] max-w-sm bg-white z-[70] md:hidden flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-[80vw] max-w-sm bg-white z-[70] lg:hidden flex flex-col"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -181,9 +185,11 @@ export default function Navbar({ locale }: NavbarProps) {
             >
               <div className="flex items-center justify-between p-5 border-b border-[#EEEAE4]">
                 <Link href={`/${locale}`} onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                  <img
+                  <Image
                     src="/logo002.png"
                     alt="Paradise Trip Viagens"
+                    width={56}
+                    height={56}
                     className="h-14 w-auto object-contain"
                   />
                 </Link>

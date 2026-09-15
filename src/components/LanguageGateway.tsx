@@ -66,9 +66,11 @@ export default function LanguageGateway() {
               transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
             >
               <div className="flex flex-col items-center gap-3">
-                <img
+                <Image
                   src="/logo002.png"
                   alt="Paradise Trip Viagens"
+                  width={160}
+                  height={160}
                   className="h-32 md:h-40 w-auto object-contain drop-shadow-2xl mb-2"
                 />
                 <p className="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">

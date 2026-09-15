@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Locale, getTranslation } from '@/lib/i18n';
 import { buildSimpleWhatsAppUrl } from '@/lib/whatsapp';
 
@@ -18,9 +19,11 @@ export default function Footer({ locale }: FooterProps) {
           {/* Col 1: Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3 mb-2">
-              <img
+              <Image
                 src="/logo002.png"
                 alt="Paradise Trip Viagens"
+                width={128}
+                height={128}
                 className="h-24 md:h-32 w-auto object-contain brightness-105 drop-shadow-md"
               />
             </div>
